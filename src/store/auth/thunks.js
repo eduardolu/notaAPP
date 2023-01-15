@@ -19,7 +19,8 @@ export const chekingGoogleSignIn =()=>{
 export const startCreatingWithEmailPassword = ({email, password, displayName})=>{
     return async( dispatch )=>{
         dispatch(chekingCredentials())
-        const resp = await registerUserWithEmailPassword({email, password, displayName})
-        console.log(resp);
+        const {ok, uid, photoURL, errorMessage} = await registerUserWithEmailPassword({email, password, displayName})
+        if ( !ok ) return dispatch( logout({errorMessage}));
+        dispatch(login({uid, email, displayName, photoURL}));
     }
 }

@@ -1,6 +1,6 @@
-import { Button, Grid, Link, TextField, Typography } from '@mui/material'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
+import { useMemo,useState  } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link as RouterLink } from 'react-router-dom'
 import { useFrom } from '../../hooks'
 import { startCreatingWithEmailPassword } from '../../store/auth'
@@ -19,8 +19,11 @@ const formValidation = {
 }
 
 export const RegiterPage = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [formsubmitted, setFormsubmitted] = useState(false)
+
+  const {status, errorMessage} = useSelector( state => state.auth )
+  const isChekingAuthentication = useMemo( ()=> status === 'cheking', [status])
 
   const {
     displayName, email, password, onInputChange, FromState, 
@@ -60,8 +63,13 @@ export const RegiterPage = () => {
             </Grid>
 
             <Grid container sx={{ mb:2, mt:1 }}>
+              <Grid item xs={12}
+                display={!!errorMessage ? '': 'none'}
+              >
+                <Alert severity='error'>{errorMessage}</Alert>
+              </Grid>
               <Grid item xs={12}>
-                <Button type='submit' variant='contained' fullWidth>
+                <Button type='submit' variant='contained' fullWidth disabled={isChekingAuthentication}>
                   Crear cuenta
                 </Button>
               </Grid>
