@@ -7,14 +7,16 @@ import { useFrom } from '../../hooks'
 import { chekingGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth'
 import { useMemo } from 'react'
 
+const formData={
+  email: '',
+  password: ''
+}
+
 export const LoginPage = () => {
   const {status, errorMessage} = useSelector(state => state.auth)
   const dispatch =useDispatch()
 
-  const {email, password, onInputChange} = useFrom({
-    email: '',
-    password: ''
-  })
+  const {email, password, onInputChange} = useFrom(formData)
 
   const isAuthenticating = useMemo( ()=> status ==='cheking', [status])
 
