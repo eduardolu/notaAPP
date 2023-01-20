@@ -12,7 +12,7 @@ export const journalSlice = createSlice({
         //     title: '',
         //     body: '',
         //     date: 1234,
-        //     imageURLs: [],
+        //     imageUrls: [],
         // },
     },
     reducers: {
@@ -25,12 +25,14 @@ export const journalSlice = createSlice({
         },
         setActiveNote: ( state, action) =>{
             state.active = action.payload;
+            state.savedMessage = '';
         },
         setNote: ( state, action) =>{
             state.notes = action.payload;
         },
         setSaving: ( state ) =>{
             state.isSaving = true;
+            state.savedMessage = '';
         },
         updateNote:( state, action) =>{ //payload es la nota
             state.isSaving = false;
@@ -43,14 +45,30 @@ export const journalSlice = createSlice({
                 return note;
             })
             //todo mensaje de modificacion
+            state.savedMessage=`${action.payload.title}, actualizada correctamente`;
+
+
+
+        },
+        setPhotosToActiveNote: (state, action) => {
+            state.active.imageUrls = [...state.active.imageUrls, ...action.payload]
+            state.isSaving = false;
+        },
+        clearNotesLogout: ( state ) => {
+            state.isSaving=false;
+            state.savedMessage = '';
+            state.notes =[];
+            state.active=null;
         },
         deleteNoteById: ( state, action) =>{
-
+            state.active = null;
+            state.notes = state.notes.filter((nota)=> nota.id !== action.payload)
         },
     }
 });
 
 // Action creators are generated for each case reducer function
 export const { addNewEmptyNote, setActiveNote, setNote,
-    setSaving, updateNote, deleteNoteById, sevingNewNote
+    setSaving, updateNote, deleteNoteById, sevingNewNote,
+    setPhotosToActiveNote, clearNotesLogout
 } = journalSlice.actions;

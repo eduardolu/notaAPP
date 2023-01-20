@@ -6,7 +6,6 @@ import { startLogout } from '../../store/auth';
 export const NavBar = ({drawerWidth = 240}) => {
     const dispatch= useDispatch()
     const onLogout=()=> {
-        console.log('out');
         dispatch(startLogout())
     }
     return (
