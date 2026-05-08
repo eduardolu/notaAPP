@@ -11,14 +11,14 @@ export const fileUpload = async( file )=>{
             method: 'POST',
             body: formData
         });
-        if ( !resp .ok) throw new Error('no hay imagen');
+        if ( !resp.ok ) throw new Error('no hay imagen');
 
         const cloudResp = await resp.json();
         return cloudResp.secure_url;
         
     } catch (error) {
         console.log(error);
-        throw new Error(error.messaje)
+        throw new Error(error.message)
     }
 
 }

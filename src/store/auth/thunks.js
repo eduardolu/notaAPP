@@ -12,7 +12,7 @@ export const chekingGoogleSignIn =()=>{
     return async( dispatch )=>{
         dispatch(chekingCredentials())
         const result = await signInWitchGoogle()
-        if (!result.ok) return dispatch(logout(result.errorMessage))
+        if (!result.ok) return dispatch(logout({ errorMessage: result.errorMessage }))
         dispatch(login(result))
     }
 }
@@ -30,7 +30,7 @@ export const startLoginWithEmailPassword = ({email, password}) =>{
     return async( dispatch )=>{
         dispatch(chekingCredentials())
         const result= await loginWithEmailPassword({email, password})
-        if ( !result.ok ) return dispatch( logout(result));
+        if ( !result.ok ) return dispatch( logout({ errorMessage: result.errorMessage }));
         dispatch(login(result));
     }
 }
