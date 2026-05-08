@@ -7,12 +7,12 @@ import { getFirestore } from 'firebase/firestore/lite'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDZeB1n14RDvVOBO5ME4iQp7bqHp2lQzyA",
-  authDomain: "react-tarea-ff277.firebaseapp.com",
-  projectId: "react-tarea-ff277",
-  storageBucket: "react-tarea-ff277.appspot.com",
-  messagingSenderId: "644043645757",
-  appId: "1:644043645757:web:5e56774cd3691c18d9db54"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
