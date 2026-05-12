@@ -2,12 +2,6 @@ import {  loginWithEmailPassword, logoutFirebase, registerUserWithEmailPassword,
 import { clearNotesLogout } from "../journal"
 import { chekingCredentials, login, logout } from "./authSlide"
 
-export const chekingAuthentication =(email,password)=>{
-    return async( dispatch )=>{
-        dispatch(chekingCredentials())
-    }
-}
-
 export const chekingGoogleSignIn =()=>{
     return async( dispatch )=>{
         dispatch(chekingCredentials())

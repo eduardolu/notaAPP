@@ -5,8 +5,6 @@ import {Google} from '@mui/icons-material'
 import { AuthLayout } from '../layout/AuthLayout'
 import { useFrom } from '../../hooks'
 import { chekingGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth'
-import { useMemo } from 'react'
-
 const formData={
   email: '',
   password: ''
@@ -18,7 +16,7 @@ export const LoginPage = () => {
 
   const {email, password, onInputChange} = useFrom(formData)
 
-  const isAuthenticating = useMemo( ()=> status ==='cheking', [status])
+  const isAuthenticating = status === 'cheking'
 
   const onSubmit = (event) => {
      event.preventDefault();

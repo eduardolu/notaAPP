@@ -1,5 +1,5 @@
 import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
-import { useMemo,useState  } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link as RouterLink } from 'react-router-dom'
 import { useFrom } from '../../hooks'
@@ -23,7 +23,7 @@ export const RegiterPage = () => {
   const [formsubmitted, setFormsubmitted] = useState(false)
 
   const {status, errorMessage} = useSelector( state => state.auth )
-  const isChekingAuthentication = useMemo( ()=> status === 'cheking', [status])
+  const isChekingAuthentication = status === 'cheking'
 
   const {
     displayName, email, password, onInputChange, FromState, 
